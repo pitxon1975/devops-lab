@@ -41,5 +41,5 @@ jobs:
           context: .
           push: true
           tags: |
-      nskx91ztm/flask-app:latest
-      nskx91ztm/flask-app:${{ github.sha }}
+            nskx91ztm/flask-app:latest
+            nskx91ztm/flask-app:${{ github.sha }}
