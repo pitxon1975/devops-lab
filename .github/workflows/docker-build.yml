@@ -40,4 +40,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: pitxon1975/flask-app:latest
+          tags: nskx91ztm/flask-app:latest
