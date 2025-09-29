@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  web:
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - .:/app
+    command: python app.py
