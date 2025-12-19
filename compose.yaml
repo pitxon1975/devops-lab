@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    image: sys-check:latest
+    ports:
+      - "5000:5000"           # <--- NUEVO: Mapea puerto 5000 (Host) a 5000 (Container)
+    volumes:
+      - .:/app
+    command: python system_check.py
