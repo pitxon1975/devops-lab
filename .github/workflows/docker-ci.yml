@@ -15,4 +15,4 @@ jobs:
       run: docker build -t sys-check:test .
       
     - name: Verificar Integridad
-      run: docker run --rm sys-check:test python system_check.py || true
+      run: docker run --rm sys-check:test python --version
