@@ -1,12 +1,26 @@
 services:
   app:
     build: .
-    ports:
-      - "5000:5000"
+    # CAMBIO 1: Usamos Gunicorn en lugar de python system_check.py
+    # -w 4: Lanza 4 procesos trabajadores (gestiona 4 visitas simultáneas)
+    # -b: Escucha en el puerto 5000 interno
+    command: gunicorn -w 4 -b 0.0.0.0:5000 system_check:app
+    expose:
+      - "5000"  # Solo accesible por otros contenedores, NO desde fuera
     env_file:
       - .env
     depends_on:
       - db
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "80:80" # CAMBIO 2: Entrada pública estándar
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
 
   db:
     image: postgres:15-alpine
